@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated">
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/Menu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/MenuBg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/const.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
