@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated">
+    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Fixed project name">
+      <change afterPath="$PROJECT_DIR$/asset/Level1Bg1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/Level1Bg01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Background.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/EntityFactory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Level.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/const.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +32,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/source/EntityFactory.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -43,7 +55,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;H:/LInguagen de programação/Trabalho_Game/FlorestAdventures/asset&quot;
+    &quot;last_opened_file_path&quot;: &quot;H:/LInguagen de programação/Projeto_Game/MoutainShooter&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -128,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760574337526</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed project name">
+      <option name="closed" value="true" />
+      <created>1760658339408</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760658339408</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +167,7 @@
     <MESSAGE value="First Commit&#10;Adding missing files on first commit" />
     <MESSAGE value="Creating of Classes" />
     <MESSAGE value="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated" />
+    <MESSAGE value="Fixed project name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed project name" />
   </component>
 </project>
