@@ -4,7 +4,7 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_ESCAPE
 from pygame.font import Font
 
-from source.const import WIN_WIDTH, C_BLACK
+from source.const import WIN_WIDTH, C_BLACK, INSTRUCTIONS_1PLAYER
 
 
 class Instructions:
@@ -20,9 +20,8 @@ class Instructions:
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
         self.instructions_text_title(30, 'SINGLE PLAYER:', C_BLACK, (WIN_WIDTH / 2, 30))
-        self.instructions_text(20,
-                               '-You have to go trough the obstacle and try to reach the end point as faste as '
-                               'possible', C_BLACK, (10, 50))
+        for i in range(len(INSTRUCTIONS_1PLAYER)):
+            self.instructions_text(20, INSTRUCTIONS_1PLAYER[i], C_BLACK, (10, 50 + 20 * i))
 
         while True:
             for event in pygame.event.get():

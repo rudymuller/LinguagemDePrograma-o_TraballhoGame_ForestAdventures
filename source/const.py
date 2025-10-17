@@ -4,7 +4,7 @@ C_WHITE = (255, 255, 255)
 C_YELLOW = (255, 255, 128)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
-C_BLACK =(0, 0, 0)
+C_BLACK = (0, 0, 0)
 
 # E
 
@@ -18,12 +18,20 @@ ENTITY_SPEED = {
     'Level1Bg5': 2,
 }
 
+# I
+
+INSTRUCTIONS_1PLAYER = ('-You have to go trough the obstacle and try to reach the end point as faste as ''possible',
+                        '-Keys < and > move the player backwards and forwards respectively',
+                        '-CTRL Right makes the player jump',
+                        '-sadfjkjsfd sdajfjsdjfds sfdjffsjd',
+                        '-kkkkkkkkk kkkkkkkkk kkkkkkkkkk'
+                        )
+
 # M
 MENU_OPTION = ('SINGLE PLAYER',
                '2 PLAYERS',
                'INSTRUCTIONS',
                'EXIT')
-
 
 # W
 WIN_WIDTH = 576

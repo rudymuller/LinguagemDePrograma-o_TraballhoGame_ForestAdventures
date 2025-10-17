@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Changed Level1.mp3 and Menu.mp3">
-      <change afterPath="$PROJECT_DIR$/asset/Instructions.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/InstructionsBg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/Instructions.py" afterDir="false" />
+    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Creating Instructions screen - Not completed yet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Instructions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/const.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760669148419</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Creating Instructions screen - Not completed yet">
+      <option name="closed" value="true" />
+      <created>1760673473422</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760673473422</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,6 +210,7 @@
     <MESSAGE value="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax" />
     <MESSAGE value="Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3" />
     <MESSAGE value="Changed Level1.mp3 and Menu.mp3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Level1.mp3 and Menu.mp3" />
+    <MESSAGE value="Creating Instructions screen - Not completed yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating Instructions screen - Not completed yet" />
   </component>
 </project>
