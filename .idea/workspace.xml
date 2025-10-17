@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax">
-      <change afterPath="$PROJECT_DIR$/asset/Leve1.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Level.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Menu.py" afterDir="false" />
+    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3">
+      <change beforePath="$PROJECT_DIR$/asset/Level1.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Level1.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/Menu.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Menu.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +21,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -151,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760661839702</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3">
+      <option name="closed" value="true" />
+      <created>1760668159038</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1760668159038</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +191,7 @@
     <MESSAGE value="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated" />
     <MESSAGE value="Fixed project name" />
     <MESSAGE value="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax" />
+    <MESSAGE value="Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3" />
   </component>
 </project>
