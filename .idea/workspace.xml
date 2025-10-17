@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Fixed project name">
-      <change afterPath="$PROJECT_DIR$/asset/Level1Bg1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Background.py" afterDir="false" />
+    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax">
+      <change afterPath="$PROJECT_DIR$/asset/Leve1.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/EntityFactory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Level.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/const.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +49,12 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;H:/LInguagen de programação/Projeto_Game/MoutainShooter&quot;
+    &quot;last_opened_file_path&quot;: &quot;H:/LInguagen de programação/Trabalho_Game/ForestAdventures/asset&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\LInguagen de programação\Trabalho_Game\ForestAdventures\asset" />
       <recent name="H:\LInguagen de programação\Trabalho_Game\FlorestAdventures\asset" />
     </key>
   </component>
@@ -148,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760658339408</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax">
+      <option name="closed" value="true" />
+      <created>1760661839702</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760661839702</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +171,7 @@
     <MESSAGE value="Creating of Classes" />
     <MESSAGE value="Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated" />
     <MESSAGE value="Fixed project name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed project name" />
+    <MESSAGE value="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax" />
   </component>
 </project>
