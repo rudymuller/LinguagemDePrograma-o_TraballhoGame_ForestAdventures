@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Improving Instructions text handling">
+    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Crating Players and Obstacles&#10;Creating Players Moves">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Background.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/EntityFactory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/EntityMediator.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/EntityMediator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Level.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/const.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760674569609</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Crating Players and Obstacles&#10;Creating Players Moves">
+      <option name="closed" value="true" />
+      <created>1760989214271</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1760989214271</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,6 +231,7 @@
     <MESSAGE value="Changed Level1.mp3 and Menu.mp3" />
     <MESSAGE value="Creating Instructions screen - Not completed yet" />
     <MESSAGE value="Improving Instructions text handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improving Instructions text handling" />
+    <MESSAGE value="Crating Players and Obstacles&#10;Creating Players Moves" />
+    <option name="LAST_COMMIT_MESSAGE" value="Crating Players and Obstacles&#10;Creating Players Moves" />
   </component>
 </project>

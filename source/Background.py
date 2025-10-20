@@ -1,4 +1,6 @@
 from source.Entity import Entity
+from source.EntityMediator import EntityMediator
+from source.Player import Player
 from source.const import ENTITY_SPEED, WIN_WIDTH
 
 
@@ -7,7 +9,7 @@ class Background(Entity):
         super().__init__(name, position)
 
     def move(self, ):
-        self.rect.centerx -= ENTITY_SPEED[self.name]
-        if self.rect.right <= 0:
-            self.rect.left = WIN_WIDTH
-        pass
+            self.rect.centerx -= ENTITY_SPEED[self.name]
+            if self.rect.right <= 0:
+                self.rect.left = WIN_WIDTH
+            pass

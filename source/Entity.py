@@ -11,7 +11,7 @@ class Entity(ABC):
         self.speed = 0
         self.y_speed = 0
         self.jumping = False
-        self.moving_forward = False
+        self.move_bg = False
 
 
     @abstractmethod

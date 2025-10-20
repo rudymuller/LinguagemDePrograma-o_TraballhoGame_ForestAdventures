@@ -22,8 +22,10 @@ class Player(Entity):
             self.rect.centerx -= ENTITY_SPEED[self.name]
         # Move Right
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
-            self.moving_forward = True
             self.rect.centerx += ENTITY_SPEED[self.name]
+            self.move_bg = True
+        else:
+            self.move_bg = False
 
         # Jump
         if pressed_key[PLAYER_KEY_JUMP[self.name]] and not self.jumping:
