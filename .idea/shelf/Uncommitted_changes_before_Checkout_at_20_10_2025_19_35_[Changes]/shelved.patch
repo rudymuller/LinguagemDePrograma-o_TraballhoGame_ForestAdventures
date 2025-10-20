@@ -1,0 +1,143 @@
+Index: source/Background.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from source.Entity import Entity\r\nfrom source.EntityMediator import EntityMediator\r\nfrom source.Player import Player\r\nfrom source.const import ENTITY_SPEED, WIN_WIDTH\r\n\r\n\r\nclass Background(Entity):\r\n    def __init__(self, name: str, position: tuple):\r\n        super().__init__(name, position)\r\n\r\n    def move(self, ):\r\n            self.rect.centerx -= ENTITY_SPEED[self.name]\r\n            if self.rect.right <= 0:\r\n                self.rect.left = WIN_WIDTH\r\n            pass\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/Background.py b/source/Background.py
+--- a/source/Background.py	
++++ b/source/Background.py	
+@@ -1,3 +1,5 @@
++from abc import ABC
++
+ from source.Entity import Entity
+ from source.EntityMediator import EntityMediator
+ from source.Player import Player
+@@ -8,8 +10,8 @@
+     def __init__(self, name: str, position: tuple):
+         super().__init__(name, position)
+ 
+-    def move(self, ):
+-            self.rect.centerx -= ENTITY_SPEED[self.name]
+-            if self.rect.right <= 0:
+-                self.rect.left = WIN_WIDTH
+-            pass
++    def move(self):
++        self.rect.centerx -= ENTITY_SPEED[self.name]
++        if self.rect.right <= 0:
++            self.rect.left = WIN_WIDTH
++        pass
+Index: source/Level.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import random\r\nimport sys\r\n\r\nimport pygame.display\r\nfrom pygame import Surface, Rect\r\nfrom pygame.font import Font\r\n\r\nfrom source.Entity import Entity\r\nfrom source.EntityFactory import EntityFactory\r\nfrom source.EntityMediator import EntityMediator\r\nfrom source.const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_OBSTACLE, SPAWN_TIME\r\n\r\n\r\nclass Level:\r\n    def __init__(self, window, name, game_mode):\r\n        self.timeout = 20000  # 20s\r\n        self.window = window\r\n        self.name = name\r\n        self.game_mode = game_mode\r\n        self.entity_list: list[Entity] = []\r\n        self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))\r\n        self.entity_list.append(EntityFactory.get_entity('Player1'))\r\n        if game_mode in (MENU_OPTION[1], MENU_OPTION[2]):\r\n            self.entity_list.append(EntityFactory.get_entity('Player2'))\r\n        pygame.time.set_timer(EVENT_OBSTACLE, SPAWN_TIME)\r\n\r\n    def run(self):\r\n        pygame.mixer_music.load(f'./asset/{self.name}.mp3')\r\n        pygame.mixer_music.play(-1)\r\n        clock = pygame.time.Clock()\r\n        while True:\r\n            clock.tick(60)\r\n            for ent in self.entity_list:\r\n                self.window.blit(source=ent.surf, dest=ent.rect)\r\n                ent.move()\r\n                for event in pygame.event.get():\r\n                    if event.type == pygame.QUIT:\r\n                        pygame.quit()\r\n                        sys.exit()\r\n                    if event.type == pygame.KEYDOWN:\r\n                        if event.key == pygame.K_ESCAPE:\r\n                            pygame.quit()\r\n                            sys.exit()\r\n                    if event.type == EVENT_OBSTACLE:\r\n                        choice = random.choice(('Obstacle1', 'Obstacle2'))\r\n                        self.entity_list.append(EntityFactory.get_entity(choice))\r\n\r\n                # printed text\r\n                self.level_text(16, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))\r\n                self.level_text(16, f'fps: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))\r\n                self.level_text(16, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))\r\n\r\n            pygame.display.flip()\r\n            EntityMediator.verify_collision(entity_list=self.entity_list)\r\n        pass\r\n\r\n    def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):\r\n        text_font: Font = pygame.font.SysFont(name=\"Lucida Sans Typewriter\", size=text_size)\r\n        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()\r\n        text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])\r\n        self.window.blit(source=text_surf, dest=text_rect)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/Level.py b/source/Level.py
+--- a/source/Level.py	
++++ b/source/Level.py	
+@@ -8,6 +8,7 @@
+ from source.Entity import Entity
+ from source.EntityFactory import EntityFactory
+ from source.EntityMediator import EntityMediator
++from source.Player import Player
+ from source.const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_OBSTACLE, SPAWN_TIME
+ 
+ 
+@@ -33,6 +34,8 @@
+             for ent in self.entity_list:
+                 self.window.blit(source=ent.surf, dest=ent.rect)
+                 ent.move()
++                if isinstance(ent, Player):
++                    ent.move()
+                 for event in pygame.event.get():
+                     if event.type == pygame.QUIT:
+                         pygame.quit()
+Index: source/Player.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\n\r\nfrom source.Entity import Entity\r\nfrom source.const import PLAYER_KEY_LEFT, PLAYER_KEY_RIGHT, ENTITY_SPEED, WIN_WIDTH, PLAYER_KEY_JUMP, \\\r\n    JUMP_SPEED, GRAVITY, FLOOR\r\n\r\n\r\nclass Player(Entity):\r\n    def __init__(self, name: str, position: tuple):\r\n        super().__init__(name, position)\r\n\r\n    def move(self, ):\r\n        self.y_speed += GRAVITY\r\n        self.rect.centery -= self.y_speed\r\n\r\n        if self.rect.centery > FLOOR:\r\n            self.rect.centery = FLOOR\r\n            self.jumping = False\r\n        pressed_key = pygame.key.get_pressed()\r\n        # Move Left\r\n        if pressed_key[PLAYER_KEY_LEFT[self.name]] and self.rect.left > 0:\r\n            self.rect.centerx -= ENTITY_SPEED[self.name]\r\n        # Move Right\r\n        if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:\r\n            self.rect.centerx += ENTITY_SPEED[self.name]\r\n            self.move_bg = True\r\n        else:\r\n            self.move_bg = False\r\n\r\n        # Jump\r\n        if pressed_key[PLAYER_KEY_JUMP[self.name]] and not self.jumping:\r\n            self.y_speed = JUMP_SPEED\r\n            self.jumping = True\r\n\r\n        pass\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/Player.py b/source/Player.py
+--- a/source/Player.py	
++++ b/source/Player.py	
+@@ -9,7 +9,7 @@
+     def __init__(self, name: str, position: tuple):
+         super().__init__(name, position)
+ 
+-    def move(self, ):
++    def moving(self, ):
+         self.y_speed += GRAVITY
+         self.rect.centery -= self.y_speed
+ 
+Index: source/EntityMediator.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\n\r\nfrom source.Background import Background\r\nfrom source.Entity import Entity\r\nfrom source.Obstacle import Obstacle\r\nfrom source.Player import Player\r\nfrom source.const import ENTITY_SPEED, WIN_WIDTH\r\n\r\n\r\nclass EntityMediator:\r\n\r\n    @staticmethod\r\n    def __verify_collision_window(ent: Entity):\r\n        if isinstance(ent, Entity):\r\n            if ent.rect.right < 0:\r\n                ent.health = 0\r\n\r\n    @staticmethod\r\n    def __verify_collision_entity(ent1, ent2):\r\n        valid_interaction = False\r\n        if isinstance(ent1, Obstacle) and isinstance(ent2, Player):\r\n            valid_interaction = True\r\n\r\n        if valid_interaction:\r\n            if (ent1.rect.right >= ent2.rect.left and\r\n                    ent1.rect.left <= ent2.rect.right and\r\n                    ent1.rect.bottom >= ent2.rect.top and\r\n                    ent1.rect.top <= ent2.rect.bottom):\r\n                ent1.health -= ent2.damage\r\n\r\n    @staticmethod\r\n    def verify_collision(entity_list: list[Entity]):\r\n        for i in range(len(entity_list)):\r\n            entity1 = entity_list[i]\r\n            EntityMediator.__verify_collision_window(entity1)\r\n            for j in range(i + 1, len(entity_list)):\r\n                entity2 = entity_list[j]\r\n                EntityMediator.__verify_collision_entity(entity1, entity2)\r\n\r\n    @staticmethod\r\n    def activate_bg_move(ent1, ent2):\r\n        valid_bg_player = False\r\n\r\n        if isinstance(ent1, Background) and isinstance(ent2, Player):\r\n            valid_bg_player = True\r\n\r\n        if valid_bg_player and ent2.move_bg:\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/EntityMediator.py b/source/EntityMediator.py
+--- a/source/EntityMediator.py	
++++ b/source/EntityMediator.py	
+@@ -1,6 +1,6 @@
+ import pygame
+ 
+-from source.Background import Background
++
+ from source.Entity import Entity
+ from source.Obstacle import Obstacle
+ from source.Player import Player
+@@ -37,14 +37,7 @@
+                 entity2 = entity_list[j]
+                 EntityMediator.__verify_collision_entity(entity1, entity2)
+ 
+-    @staticmethod
+-    def activate_bg_move(ent1, ent2):
+-        valid_bg_player = False
+ 
+-        if isinstance(ent1, Background) and isinstance(ent2, Player):
+-            valid_bg_player = True
+-
+-        if valid_bg_player and ent2.move_bg:
+ 
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3409c602-2d50-4551-a4b6-e9f29edac691\" name=\"Changes\" comment=\"Crating Players and Obstacles&#10;Creating Players Moves\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/source/Background.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/Background.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/source/Entity.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/Entity.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/source/EntityMediator.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/EntityMediator.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/source/Level.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/Level.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/source/Player.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/Player.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <excluded-from-favorite>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"origin/master\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </excluded-from-favorite>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/source/EntityFactory.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"346V7HdU81xDdI9UAugKn0M6Deg\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.Game.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.Menu.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.main.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;H:/LInguagen de programação/Projeto_Game/MoutainShooter&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"H:\\LInguagen de programação\\Trabalho_Game\\ForestAdventures\\asset\" />\r\n      <recent name=\"H:\\LInguagen de programação\\Trabalho_Game\\FlorestAdventures\\asset\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"FlorestAdventures\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-c69650fc56ca-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15619.17\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3409c602-2d50-4551-a4b6-e9f29edac691\" name=\"Changes\" comment=\"\" />\r\n      <created>1760533840033</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1760533840033</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"First Commit&#10;Creating Python project&#10;Testing Pygame package\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760535522342</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760535522342</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"First Commit&#10;Adding missing files on first commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760535791522</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760535791522</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Creating of Classes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760573657554</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760573657554</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760574337526</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760574337526</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Fixed project name\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760658339408</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760658339408</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760661839702</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760661839702</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760668159038</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760668159038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Changed Level1.mp3 and Menu.mp3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760669148419</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760669148419</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Creating Instructions screen - Not completed yet\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760673473422</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760673473422</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Improving Instructions text handling\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760674569609</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760674569609</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Crating Players and Obstacles&#10;Creating Players Moves\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760989214271</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760989214271</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"12\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"First Commit&#10;Creating Python project&#10;Testing Pygame package\" />\r\n    <MESSAGE value=\"First Commit&#10;Adding missing files on first commit\" />\r\n    <MESSAGE value=\"Creating of Classes\" />\r\n    <MESSAGE value=\"Creating main loop&#10;Connecting Menu and Game classes&#10;const.py updated\" />\r\n    <MESSAGE value=\"Fixed project name\" />\r\n    <MESSAGE value=\"Created Menu Interactions&#10;Created Factory, Level1 BG&#10;Implemented parallax\" />\r\n    <MESSAGE value=\"Optimizing Entity and Menu&#10;Improving Level1&#10;asset: added Level1.mp3\" />\r\n    <MESSAGE value=\"Changed Level1.mp3 and Menu.mp3\" />\r\n    <MESSAGE value=\"Creating Instructions screen - Not completed yet\" />\r\n    <MESSAGE value=\"Improving Instructions text handling\" />\r\n    <MESSAGE value=\"Crating Players and Obstacles&#10;Creating Players Moves\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Crating Players and Obstacles&#10;Creating Players Moves\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,10 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Crating Players and Obstacles&#10;Creating Players Moves">
++    <list default="true" id="3409c602-2d50-4551-a4b6-e9f29edac691" name="Changes" comment="Trying to interact Bg move with Players move&#10;Not finished yet">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/source/Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Background.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/source/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Entity.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/source/EntityMediator.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/EntityMediator.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/source/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Level.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/source/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Player.py" afterDir="false" />
+@@ -38,6 +37,11 @@
+         </map>
+       </branch-storage>
+     </excluded-from-favorite>
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="33bfc7b1d887b56d90e124a34c6c7fd71c40921a" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="RESET_MODE" value="HARD" />
+   </component>
