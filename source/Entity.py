@@ -2,6 +2,8 @@ from abc import abstractmethod, ABC
 
 import pygame
 
+from source.const import ENTITY_HEALTH
+
 
 class Entity(ABC):
     def __init__(self, name: str, position: tuple):
@@ -11,7 +13,7 @@ class Entity(ABC):
         self.speed = 0
         self.y_speed = 0
         self.jumping = False
-        self.moving_forward = False
+        self.health = ENTITY_HEALTH[self.name]
 
 
     @abstractmethod

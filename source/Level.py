@@ -7,6 +7,7 @@ from pygame.font import Font
 
 from source.Entity import Entity
 from source.EntityFactory import EntityFactory
+from source.EntityMediator import EntityMediator
 from source.const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_OBSTACLE, SPAWN_TIME
 
 
@@ -19,8 +20,8 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        if game_mode in (MENU_OPTION[1], MENU_OPTION[2]):
-            self.entity_list.append(EntityFactory.get_entity('Player2'))
+        # if game_mode in (MENU_OPTION[1], MENU_OPTION[2]):
+        #     self.entity_list.append(EntityFactory.get_entity('Player2'))
         pygame.time.set_timer(EVENT_OBSTACLE, SPAWN_TIME)
 
     def run(self):
@@ -36,6 +37,9 @@ class Level:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            return
                     if event.type == EVENT_OBSTACLE:
                         choice = random.choice(('Obstacle1', 'Obstacle2'))
                         self.entity_list.append(EntityFactory.get_entity(choice))
@@ -46,6 +50,8 @@ class Level:
                 self.level_text(16, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
 
             pygame.display.flip()
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
         pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):

@@ -19,7 +19,7 @@ class EntityFactory:
                 return list_bg
 
             case 'Player1':
-                return Player('Player1', (50, FLOOR))
+                return Player('Player1', (150, FLOOR))
             case 'Player2':
                 return Player('Player2', (150, FLOOR))
             case 'Obstacle1':

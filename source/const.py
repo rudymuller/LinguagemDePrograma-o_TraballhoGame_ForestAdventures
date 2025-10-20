@@ -13,16 +13,29 @@ C_BLACK = (0, 0, 0)
 EVENT_OBSTACLE = pygame.USEREVENT + 1
 
 ENTITY_SPEED = {
-    'Level1Bg0': 2,
-    'Level1Bg1': 1,
-    'Level1Bg2': 1,
-    'Level1Bg3': 1,
-    'Level1Bg4': 1,
-    'Level1Bg5': 2,
+    'Level1Bg0': 3,
+    'Level1Bg1': 2,
+    'Level1Bg2': 2,
+    'Level1Bg3': 2,
+    'Level1Bg4': 2,
+    'Level1Bg5': 3,
     'Player1': 3,
     'Player2': 3,
-    'Obstacle1': 2,
-    'Obstacle2': 2,
+    'Obstacle1': 3,
+    'Obstacle2': 3,
+}
+
+ENTITY_HEALTH = {
+    'Level1Bg0': 999,
+    'Level1Bg1': 999,
+    'Level1Bg2': 999,
+    'Level1Bg3': 999,
+    'Level1Bg4': 999,
+    'Level1Bg5': 999,
+    'Player1': 30,
+    'Player2': 30,
+    'Obstacle1': 50,
+    'Obstacle2': 60,
 }
 
 # G
@@ -31,7 +44,7 @@ GRAVITY = -0.5
 # I
 
 INSTRUCTIONS_1PLAYER = ('-You have to go trough the obstacle and try to reach the end point as faste as ''possible',
-                        '-Keys < and > move the player backwards and forwards respectively',
+                        '-Key -> moves the player forward',
                         '-CTRL Right makes the player jump'
                         )
 
@@ -41,7 +54,6 @@ JUMP_SPEED = 10
 
 # M
 MENU_OPTION = ('SINGLE PLAYER',
-               '2 PLAYERS',
                'INSTRUCTIONS',
                'EXIT')
 
